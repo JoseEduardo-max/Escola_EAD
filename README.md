@@ -64,13 +64,13 @@ A dificuldade de professores, escolas e pequenos empreendedores em criar uma pla
 
 | Entregável                        | Status     |
 |----------------------------------|------------|
-| Discovery do Projeto              | ✅ Em andamento |
-| Gerenciamento das Tarefas         | ✅ Criado |
+| Discovery do Projeto              | 🔲 |
+| Gerenciamento das Tarefas         | 🔲 |
 | Prototipação de telas (opcional)  | 🔲 |
 | Implementação Frontend (opcional) | 🔲 |
 | API em Node.js                    | 🔲 |
 | Documentação dos Endpoints        | 🔲 |
-| Desenho do Banco de Dados         | ✅ Neste arquivo |
+| Desenho do Banco de Dados         | 🔲 |
 | Testes automatizados dos endpoints| 🔲 |
 | Testes unitários (50%)            | 🔲 |
 | Repositório público no GitHub     | ✅ |
