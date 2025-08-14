@@ -157,6 +157,7 @@ classDiagram
         + curso_id
         + data_matricula
         + status 
+
     }
 
     class ProgressoAula {
@@ -187,6 +188,7 @@ classDiagram
         + alternativa_correta
     }
 
+
     class Respostas {
         + id
         + aluno_id
@@ -195,6 +197,7 @@ classDiagram
         + correta
         + respondido_em
     }
+
 
     class Certificados {
         + id
