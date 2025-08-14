@@ -85,3 +85,146 @@ A dificuldade de professores, escolas e pequenos empreendedores em criar uma pla
 | Apresentação final                | 🔲 |
 
 ---
+
+```mermaid
+classDiagram
+  
+    Usuario --> Curso: Professor
+    Usuario --> Matricula: OneToMany
+    Usuario --> ProgressoAula: OneToMany
+    Usuario --> Resposta: OneToMany
+    Usuario --> Certificado: OneToMany
+    Usuario --> Pagamento: OneToMany
+
+    Curso --> Modulo: OneToMany
+    Curso --> Matricula: OneToMany
+    Curso --> Certificado: OneToMany
+    Curso --> Pagamento: OneToMany
+    Curso --> TrilhaCurso: OneToMany
+
+    Modulo --> Aula: OneToMany
+    Modulo --> Avaliacao: OneToMany
+
+    Aula --> ProgressoAula: OneToMany
+
+    Avaliacao --> Questao: OneToMany
+
+    Questao --> Resposta: OneToMany
+
+    Trilha --> TrilhaCurso: OneToMany
+
+  
+    class Usuario {
+        + id
+        + nome
+        + email
+        + senha
+        + tipo 
+        + criado_em
+    }
+
+    class Curso {
+        + id
+        + titulo
+        + descricao
+        + imagem_capa
+        + publico_alvo
+        + categoria
+        + professor_id
+        + criado_em
+    }
+
+    class Modulo {
+        + id
+        + curso_id
+        + titulo
+        + ordem
+    }
+
+    class Aula {
+        + id
+        + modulo_id
+        + titulo
+        + descricao
+        + video_url
+        + ordem
+        + duracao (min)
+    }
+
+    class Matricula {
+        + id
+        + aluno_id
+        + curso_id
+        + data_matricula
+        + status 
+    }
+
+    class ProgressoAula {
+        + id
+        + aluno_id
+        + aula_id
+        + assistido
+        + data_assistido
+    }
+
+    class Avaliacao {
+        + id
+        + modulo_id
+        + titulo
+        + descricao
+        + data_disponivel
+    }
+
+    class Questao {
+        + id
+        + avaliacao_id
+        + enunciado
+        + tipo 
+        + alternativa_a
+        + alternativa_b
+        + alternativa_c
+        + alternativa_d
+        + alternativa_correta
+    }
+
+    class Resposta {
+        + id
+        + aluno_id
+        + questao_id
+        + resposta
+        + correta
+        + respondido_em
+    }
+
+    class Certificado {
+        + id
+        + aluno_id
+        + curso_id
+        + emitido_em
+        + codigo_certificado
+    }
+
+    class Pagamento {
+        + id
+        + aluno_id
+        + curso_id
+        + valor
+        + status
+        + metodo_pagamento
+        + data_pagamento
+    }
+
+    class Trilha {
+        + id
+        + titulo
+        + descricao
+    }
+
+    class TrilhaCurso {
+        + id
+        + trilha_id
+        + curso_id
+        + ordem
+    }
+
+```
