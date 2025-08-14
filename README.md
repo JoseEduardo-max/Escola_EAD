@@ -92,13 +92,13 @@ classDiagram
     Usuario --> Curso: Professor
     Usuario --> Matricula: OneToMany
     Usuario --> ProgressoAula: OneToMany
-    Usuario --> Resposta: OneToMany
-    Usuario --> Certificado: OneToMany
+    Usuario --> Respostas: OneToMany
+    Usuario --> Certificados: OneToMany
     Usuario --> Pagamento: OneToMany
 
     Curso --> Modulo: OneToMany
     Curso --> Matricula: OneToMany
-    Curso --> Certificado: OneToMany
+    Curso --> Certificados: OneToMany
     Curso --> Pagamento: OneToMany
     Curso --> TrilhaCurso: OneToMany
 
@@ -109,7 +109,7 @@ classDiagram
 
     Avaliacao --> Questao: OneToMany
 
-    Questao --> Resposta: OneToMany
+    Questao --> Respostas: OneToMany
 
     Trilha --> TrilhaCurso: OneToMany
 
