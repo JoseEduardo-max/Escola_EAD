@@ -187,7 +187,7 @@ classDiagram
         + alternativa_correta
     }
 
-    class Resposta {
+    class Respostas {
         + id
         + aluno_id
         + questao_id
@@ -196,7 +196,7 @@ classDiagram
         + respondido_em
     }
 
-    class Certificado {
+    class Certificados {
         + id
         + aluno_id
         + curso_id
