@@ -119,7 +119,7 @@ classDiagram
         + nome
         + email
         + senha
-        + tipo {aluno, professor, admin}
+        + tipo 
         + criado_em
     }
 
@@ -156,7 +156,8 @@ classDiagram
         + aluno_id
         + curso_id
         + data_matricula
-        + status {ativa, concluida, cancelada}
+        + status 
+
     }
 
     class ProgressoAula {
@@ -179,7 +180,7 @@ classDiagram
         + id
         + avaliacao_id
         + enunciado
-        + tipo {multipla_escolha, dissertativa}
+        + tipo 
         + alternativa_a
         + alternativa_b
         + alternativa_c
@@ -187,7 +188,8 @@ classDiagram
         + alternativa_correta
     }
 
-    class Resposta {
+
+    class Respostas {
         + id
         + aluno_id
         + questao_id
@@ -196,7 +198,8 @@ classDiagram
         + respondido_em
     }
 
-    class Certificado {
+
+    class Certificados {
         + id
         + aluno_id
         + curso_id
@@ -209,7 +212,7 @@ classDiagram
         + aluno_id
         + curso_id
         + valor
-        + status {pendente, aprovado, cancelado}
+        + status
         + metodo_pagamento
         + data_pagamento
     }
