@@ -36,19 +36,15 @@ A dificuldade de professores, escolas e pequenos empreendedores em criar uma pla
 - Cadastro/Login
 - Visualização de cursos disponíveis
 - Inscrição em cursos
-- Visualização de trilhas e videoaulas
-- Responder avaliações
 - Emissão de certificados
 - Acompanhamento de progresso
 
 ### Admin (Gestor)
 - CRUD de cursos
-- CRUD de trilhas e aulas
+- CRUD de aulas
 - Upload de videoaulas
-- Criar avaliações (questões)
 - Emissão de certificados
 - Visualização de relatórios
-- Simulação de pagamentos
 
 ---
 
@@ -88,27 +84,17 @@ A dificuldade de professores, escolas e pequenos empreendedores em criar uma pla
 
 ```mermaid
 classDiagram
-  
 
     Usuario --> Matricula: OneToMany
  
- 
     Usuario --> Certificados: OneToMany
-
 
     Curso --> Modulo: OneToMany
     Curso --> Matricula: OneToMany
     Curso --> Certificados: OneToMany
 
-
     Modulo --> Aula: OneToMany
 
-
-   
-
-
-
-  
     class Usuario {
         + id
         + nome
@@ -152,11 +138,7 @@ classDiagram
         + curso_id
         + data_matricula
         + status 
-
     }
-
-
-
 
     class Certificados {
         + id
@@ -165,8 +147,4 @@ classDiagram
         + emitido_em
         + codigo_certificado
     }
-
-
-
-
 ```
