@@ -25,7 +25,7 @@ CREATE TABLE cursos (
     FOREIGN KEY (professor_id) REFERENCES usuarios(id)
 );
 
--- Módulos (trilhas dentro de cursos)
+-- Módulos  
 CREATE TABLE modulos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     curso_id INT NOT NULL,
@@ -67,7 +67,3 @@ CREATE TABLE certificados (
     FOREIGN KEY (aluno_id) REFERENCES usuarios(id),
     FOREIGN KEY (curso_id) REFERENCES cursos(id)
 );
-
-
-
-
