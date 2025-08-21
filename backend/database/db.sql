@@ -57,53 +57,6 @@ CREATE TABLE matriculas (
     FOREIGN KEY (curso_id) REFERENCES cursos(id)
 );
 
--- Progresso por aula
-CREATE TABLE progresso_aulas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    aluno_id INT,
-    aula_id INT,
-    assistido BOOLEAN DEFAULT FALSE,
-    data_assistido TIMESTAMP NULL,
-    FOREIGN KEY (aluno_id) REFERENCES usuarios(id),
-    FOREIGN KEY (aula_id) REFERENCES aulas(id)
-);
-
--- Avaliações (provas ou testes por módulo)
-CREATE TABLE avaliacoes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    modulo_id INT NOT NULL,
-    titulo VARCHAR(100),
-    descricao TEXT,
-    data_disponivel TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (modulo_id) REFERENCES modulos(id)
-);
-
--- Questões das avaliações
-CREATE TABLE questoes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    avaliacao_id INT,
-    enunciado TEXT,
-    tipo ENUM('multipla_escolha', 'dissertativa'),
-    alternativa_a TEXT,
-    alternativa_b TEXT,
-    alternativa_c TEXT,
-    alternativa_d TEXT,
-    alternativa_correta CHAR(1),
-    FOREIGN KEY (avaliacao_id) REFERENCES avaliacoes(id)
-);
-
--- Respostas dos alunos
-CREATE TABLE respostas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    aluno_id INT,
-    questao_id INT,
-    resposta TEXT,
-    correta BOOLEAN,
-    respondido_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (aluno_id) REFERENCES usuarios(id),
-    FOREIGN KEY (questao_id) REFERENCES questoes(id)
-);
-
 -- Certificados
 CREATE TABLE certificados (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -115,32 +68,6 @@ CREATE TABLE certificados (
     FOREIGN KEY (curso_id) REFERENCES cursos(id)
 );
 
--- Pagamentos
-CREATE TABLE pagamentos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    aluno_id INT,
-    curso_id INT,
-    valor DECIMAL(10,2),
-    status ENUM('pendente', 'aprovado', 'cancelado') DEFAULT 'pendente',
-    metodo_pagamento VARCHAR(50),
-    data_pagamento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (aluno_id) REFERENCES usuarios(id),
-    FOREIGN KEY (curso_id) REFERENCES cursos(id)
-);
 
--- Trilhas de aprendizagem
-CREATE TABLE trilhas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(100),
-    descricao TEXT
-);
 
--- Cursos em trilhas
-CREATE TABLE trilha_cursos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    trilha_id INT,
-    curso_id INT,
-    ordem INT,
-    FOREIGN KEY (trilha_id) REFERENCES trilhas(id),
-    FOREIGN KEY (curso_id) REFERENCES cursos(id)
-);
+

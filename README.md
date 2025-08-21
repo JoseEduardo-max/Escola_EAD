@@ -89,29 +89,24 @@ A dificuldade de professores, escolas e pequenos empreendedores em criar uma pla
 ```mermaid
 classDiagram
   
-    Usuario --> Curso: Professor
+
     Usuario --> Matricula: OneToMany
-    Usuario --> ProgressoAula: OneToMany
-    Usuario --> Respostas: OneToMany
+ 
+ 
     Usuario --> Certificados: OneToMany
-    Usuario --> Pagamento: OneToMany
+
 
     Curso --> Modulo: OneToMany
     Curso --> Matricula: OneToMany
     Curso --> Certificados: OneToMany
-    Curso --> Pagamento: OneToMany
-    Curso --> TrilhaCurso: OneToMany
+
 
     Modulo --> Aula: OneToMany
-    Modulo --> Avaliacao: OneToMany
 
-    Aula --> ProgressoAula: OneToMany
 
-    Avaliacao --> Questao: OneToMany
+   
 
-    Questao --> Respostas: OneToMany
 
-    Trilha --> TrilhaCurso: OneToMany
 
   
     class Usuario {
@@ -130,7 +125,7 @@ classDiagram
         + imagem_capa
         + publico_alvo
         + categoria
-        + professor_id
+     
         + criado_em
     }
 
@@ -160,43 +155,7 @@ classDiagram
 
     }
 
-    class ProgressoAula {
-        + id
-        + aluno_id
-        + aula_id
-        + assistido
-        + data_assistido
-    }
 
-    class Avaliacao {
-        + id
-        + modulo_id
-        + titulo
-        + descricao
-        + data_disponivel
-    }
-
-    class Questao {
-        + id
-        + avaliacao_id
-        + enunciado
-        + tipo 
-        + alternativa_a
-        + alternativa_b
-        + alternativa_c
-        + alternativa_d
-        + alternativa_correta
-    }
-
-
-    class Respostas {
-        + id
-        + aluno_id
-        + questao_id
-        + resposta
-        + correta
-        + respondido_em
-    }
 
 
     class Certificados {
@@ -207,27 +166,7 @@ classDiagram
         + codigo_certificado
     }
 
-    class Pagamento {
-        + id
-        + aluno_id
-        + curso_id
-        + valor
-        + status
-        + metodo_pagamento
-        + data_pagamento
-    }
 
-    class Trilha {
-        + id
-        + titulo
-        + descricao
-    }
 
-    class TrilhaCurso {
-        + id
-        + trilha_id
-        + curso_id
-        + ordem
-    }
 
 ```
