@@ -13,16 +13,18 @@ class AulaModel {
 
     static async create({ modulo_id, titulo, descricao, video_url, ordem, duracao }) {
         const [result] = await db.executar(
-            `INSERT INTO aulas (modulo_id, titulo, descricao, video_url, ordem, duracao) VALUES ('${modulo_id}', '${titulo}', '${descricao}', '${video_url}', '${ordem}', '${duracao}')`,
-          
-        );
+
+            `INSERT INTO aulas (modulo_id, titulo, descricao, video_url, ordem, duracao) VALUES ('${modulo_id}', '${titulo}', '${descricao}', '${video_url}', '${ordem}', '${duracao}')`)
+
         return { id: result.insertId, modulo_id, titulo, descricao, video_url, ordem, duracao };
     }
 
     static async update(id, { modulo_id, titulo, descricao, video_url, ordem, duracao }) {
         await db.executar(
+
             `UPDATE aulas SET (modulo_id = ${modulo_id}, titulo = ${titulo}, descricao = ${descricao}, video_url = ${video_url}, ordem = ${ordem}, duracao = ${duracao} WHERE id = ${id})`,
             
+
         );
         return { id, modulo_id, titulo, descricao, video_url, ordem, duracao };
     }

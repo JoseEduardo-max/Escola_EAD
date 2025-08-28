@@ -11,6 +11,7 @@ async function executar(sql) {
     });
 
     let [results] = await conexao.query(sql);
+
     return results;
 }
 
