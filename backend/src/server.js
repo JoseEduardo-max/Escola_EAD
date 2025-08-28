@@ -10,8 +10,10 @@ app.use(cors());
 app.use(express.json());
 
 // Rota de teste
-app.get('/', (req, res) => {
+app.get('/apiteste', (req, res) => {
   res.send('API da Escola de Cursos Online está rodando! 🎓');
+
+
 });
 
 app.listen(PORT, () => {
