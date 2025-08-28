@@ -1,8 +1,8 @@
--- Criar banco
+
 CREATE DATABASE IF NOT EXISTS escola_ead;
 USE escola_ead;
 
--- Usuários (alunos, professores e admins)
+
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE usuarios (
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Cursos
+
 CREATE TABLE cursos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE cursos (
     FOREIGN KEY (professor_id) REFERENCES usuarios(id)
 );
 
--- Módulos  
+ 
 CREATE TABLE modulos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     curso_id INT NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE modulos (
     FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE
 );
 
--- Aulas (vídeo aulas)
+
 CREATE TABLE aulas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     modulo_id INT NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE aulas (
     FOREIGN KEY (modulo_id) REFERENCES modulos(id) ON DELETE CASCADE
 );
 
--- Matriculas
+
 CREATE TABLE matriculas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     aluno_id INT NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE matriculas (
     FOREIGN KEY (curso_id) REFERENCES cursos(id)
 );
 
--- Certificados
+
 CREATE TABLE certificados (
     id INT AUTO_INCREMENT PRIMARY KEY,
     aluno_id INT,
