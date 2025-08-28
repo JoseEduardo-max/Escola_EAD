@@ -8,8 +8,8 @@ CREATE TABLE usuarios (
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
-    tipo ENUM('aluno', 'professor', 'admin') NOT NULL,
-    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    categoria VARCHAR(40)  NOT NULL,
+    criado_em TIMESTAMP DEFAULT 
 );
 
 
@@ -21,7 +21,7 @@ CREATE TABLE cursos (
     publico_alvo TEXT,
     categoria VARCHAR(50),
     professor_id INT,
-    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    criado_em TIMESTAMP DEFAULT ,
     FOREIGN KEY (professor_id) REFERENCES usuarios(id)
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE aulas (
     descricao TEXT,
     video_url VARCHAR(255),
     ordem INT,
-    duracao INT COMMENT 'em minutos',
+    duracao VARCHAR(30),
     FOREIGN KEY (modulo_id) REFERENCES modulos(id) ON DELETE CASCADE
 );
 
@@ -52,7 +52,7 @@ CREATE TABLE matriculas (
     aluno_id INT NOT NULL,
     curso_id INT NOT NULL,
     data_matricula TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('ativa', 'concluida', 'cancelada') DEFAULT 'ativa',
+    situacao_matricula VARCHAR(40),
     FOREIGN KEY (aluno_id) REFERENCES usuarios(id),
     FOREIGN KEY (curso_id) REFERENCES cursos(id)
 );
