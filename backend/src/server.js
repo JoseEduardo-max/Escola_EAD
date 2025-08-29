@@ -1,24 +1,15 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-const aulaRoutes = require ("./routes/aulaRoutes")
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Rota de teste
-app.get('/apiteste', (req, res) => {
-  res.send('API da Escola de Cursos Online está rodando! 🎓');
+const express = require('express')
+const app = express()
+app.use(express.json())
 
 
-});
 
-app.use(aulaRoutes)
+const Users = require('../src/routes/usuariosRoute');
+app.use('/Users', Users);
 
+
+
+const PORT = 3000
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+    console.log(`O servidor está rodando na porta ${PORT}`)
+})

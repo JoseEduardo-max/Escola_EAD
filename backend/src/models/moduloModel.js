@@ -13,7 +13,7 @@ class ModuloModel {
 
     static async create({ curso_id, titulo, ordem }) {
 
-        const [result] = await db.query(
+        const [result] = await db.executar(
             `INSERT INTO modulos (curso_id, titulo, ordem) VALUES (${curso_id}, ${titulo}, ${ordem})`)
 
         return { id: result.insertId, curso_id, titulo, ordem };
