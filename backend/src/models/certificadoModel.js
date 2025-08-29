@@ -2,33 +2,32 @@ const db = require("../config/db");
 
 class CertificadoModel {
     static async getAll() {
-        const [rows] = await db.executar("SELECT * FROM certificados");
+        const [rows] = await db.executar(`SELECT * FROM certificados`);
         return rows;
     }
 
     static async getById(id) {
-        const [rows] = await db.executar("SELECT * FROM certificados WHERE id = ?", [id]);
+        const [rows] = await db.executar(`SELECT * FROM certificados WHERE id = ${id}`);
         return rows[0];
     }
 
     static async create({ aluno_id, curso_id, emitido_em, codigo_certificado }) {
         const [result] = await db.executar(
-            "INSERT INTO certificados (aluno_id, curso_id, emitido_em, codigo_certificado) VALUES (?, ?, ?, ?)",
-            [aluno_id, curso_id, emitido_em, codigo_certificado]
+            `INSERT INTO certificados (aluno_id, curso_id, emitido_em, codigo_certificado) 
+             VALUES (${aluno_id}, ${curso_id}, ${emitido_em}, ${codigo_certificado})`
         );
         return { id: result.insertId, aluno_id, curso_id, emitido_em, codigo_certificado };
     }
 
     static async update(id, { aluno_id, curso_id, emitido_em, codigo_certificado }) {
         await db.executar(
-            "UPDATE certificados SET aluno_id = ?, curso_id = ?, emitido_em = ?, codigo_certificado = ? WHERE id = ?",
-            [aluno_id, curso_id, emitido_em, codigo_certificado, id]
+            `UPDATE certificados SET aluno_id = ${aluno_id}, curso_id = ${curso_id}, emitido_em = ${emitido_em}, codigo_certificado = ${codigo_certificado} WHERE id = ${id}`
         );
         return { id, aluno_id, curso_id, emitido_em, codigo_certificado };
     }
 
     static async remove(id) {
-        await db.executar("DELETE FROM certificados WHERE id = ?", [id]);
+        await db.executar(`DELETE FROM certificados WHERE id = ${id}`,);
         return { message: "Certificado removido com sucesso" };
     }
 }

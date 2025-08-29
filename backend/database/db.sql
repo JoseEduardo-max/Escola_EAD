@@ -1,17 +1,14 @@
-
 CREATE DATABASE IF NOT EXISTS escola_ead;
 USE escola_ead;
-
 
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
-    categoria VARCHAR(40)  NOT NULL,
-    criado_em TIMESTAMP DEFAULT 
+    categoria VARCHAR(40) NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 
 CREATE TABLE cursos (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -20,12 +17,11 @@ CREATE TABLE cursos (
     imagem_capa VARCHAR(255),
     publico_alvo TEXT,
     categoria VARCHAR(50),
-    professor_id INT,
-    criado_em TIMESTAMP DEFAULT ,
-    FOREIGN KEY (professor_id) REFERENCES usuarios(id)
+    professor_id INT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (professor_id) REFERENCES usuarios(id) ON DELETE SET NULL
 );
 
- 
 CREATE TABLE modulos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     curso_id INT NOT NULL,
@@ -33,7 +29,6 @@ CREATE TABLE modulos (
     ordem INT,
     FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE
 );
-
 
 CREATE TABLE aulas (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,24 +41,22 @@ CREATE TABLE aulas (
     FOREIGN KEY (modulo_id) REFERENCES modulos(id) ON DELETE CASCADE
 );
 
-
 CREATE TABLE matriculas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     aluno_id INT NOT NULL,
     curso_id INT NOT NULL,
     data_matricula TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     situacao_matricula VARCHAR(40),
-    FOREIGN KEY (aluno_id) REFERENCES usuarios(id),
-    FOREIGN KEY (curso_id) REFERENCES cursos(id)
+    FOREIGN KEY (aluno_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE
 );
-
 
 CREATE TABLE certificados (
     id INT AUTO_INCREMENT PRIMARY KEY,
     aluno_id INT,
     curso_id INT,
-    emitido_em DATE,
+    emitido_em DATE DEFAULT CURRENT_DATE,
     codigo_certificado VARCHAR(100) UNIQUE,
-    FOREIGN KEY (aluno_id) REFERENCES usuarios(id),
-    FOREIGN KEY (curso_id) REFERENCES cursos(id)
+    FOREIGN KEY (aluno_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE
 );

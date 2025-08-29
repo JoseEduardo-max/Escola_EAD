@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const aulaController = require("../controllers/aulaController");
 
-router.get("/allClass", aulaController.getAll);
+router.get("/Class", aulaController.getAll);
 router.get("/class/:id", aulaController.getById);
-router.post("/createClass", aulaController.create);
-router.put("/editClass/:id", aulaController.update);
-router.delete("/deleteClass/:id", aulaController.remove);
+router.post("/Class", aulaController.create);
+router.put("/Class/:id", aulaController.update);
+router.delete("/Class/:id", aulaController.remove);
 
 module.exports = router;
