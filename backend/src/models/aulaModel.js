@@ -22,7 +22,6 @@ class AulaModel {
 
     static async update(id, { modulo_id, titulo, descricao, video_url, ordem, duracao }) {
         await db.executar(
-
             `UPDATE aulas SET (modulo_id = ${modulo_id}, titulo = ${titulo}, descricao = ${descricao}, video_url = ${video_url}, ordem = ${ordem}, duracao = ${duracao} WHERE id = ${id})`,
         );
         return { id, modulo_id, titulo, descricao, video_url, ordem, duracao };
