@@ -13,6 +13,12 @@ let UserModel = connection.define('usuarios', {
         allowNull: false,
         unique: true
     },
+    User_id: {
+  type: DataTypes.INTEGER,
+  autoIncrement: true,
+  primaryKey: true
+}
+,
     senha: {
         type: DataTypes.STRING(300),
         allowNull: false

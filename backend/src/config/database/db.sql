@@ -19,6 +19,7 @@ CREATE TABLE cursos (
     categoria VARCHAR(50),
     professor_id INT NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (professor_id) REFERENCES usuarios(id) ON DELETE SET NULL
 );
 
