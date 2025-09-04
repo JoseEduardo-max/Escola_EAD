@@ -3,9 +3,9 @@ const CertificadoModel = require('../models/certificadoModel');
 // CREATE
 const CertificadoCreate = async (req, res) => {
     try {
-        const { aluno_id, curso_id, codigo } = req.body;
+        const { aluno_id, curso_id, codigo_certificado } = req.body;
 
-        const certificado = await CertificadoModel.create({ aluno_id, curso_id, codigo });
+        const certificado = await CertificadoModel.create({ aluno_id, curso_id, codigo_certificado });
 
         res.send({
             success: true,

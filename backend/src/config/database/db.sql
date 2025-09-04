@@ -62,6 +62,6 @@ CREATE TABLE certificados (
     curso_id INT,
     emitido_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     codigo_certificado VARCHAR(100) UNIQUE,
-    FOREIGN KEY (aluno_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (User_id) REFERENCES usuarios(id) ON DELETE CASCADE,
     FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE
 );

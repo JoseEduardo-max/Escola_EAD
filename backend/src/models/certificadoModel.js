@@ -10,12 +10,12 @@ const CertificadoModel = connection.define('certificados', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    data_emissao: {
+    emitido_em: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW
     },
-    codigo: {
+    codigo_certificado: {
         type: DataTypes.STRING(100),
         allowNull: false,
         unique: true
