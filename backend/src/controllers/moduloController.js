@@ -1,47 +1,89 @@
-const ModuloModel = require("../models/moduloModel");
+const ModuloModel = require('../models/moduloModel');
 
-exports.getAll = async (req, res) => {
+const ModuloCreate = async (req, res) => {
     try {
-        const modulos = await ModuloModel.getAll();
-        res.json(modulos);
+        const { curso_id, titulo, ordem } = req.body;
+
+        const modulo = await ModuloModel.create({ curso_id, titulo, ordem });
+
+        res.send({
+            success: true,
+            message: `Módulo criado com sucesso! ID: ${modulo.id}`
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({
+            success: false,
+            error: `Erro na requisição: ${error}`
+        });
     }
 };
 
-exports.getById = async (req, res) => {
+const ModuloList = async (req, res) => {
     try {
-        const modulo = await ModuloModel.getById(req.params.id);
-        if (!modulo) return res.status(404).json({ error: "Módulo não encontrado" });
-        res.json(modulo);
+        const modulos = await ModuloModel.findAll();
+        res.send(modulos);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({
+            success: false,
+            error: `Erro na requisição: ${error}`
+        });
     }
 };
 
-exports.create = async (req, res) => {
+const ModuloListId = async (req, res) => {
     try {
-        const novo = await ModuloModel.create(req.body);
-        res.status(201).json(novo);
+        const id = req.params.id;
+        const modulo = await ModuloModel.findOne({ where: { id } });
+
+        if (!modulo) {
+            return res.status(404).json({
+                success: false,
+                message: 'Módulo não encontrado'
+            });
+        }
+
+        res.send(modulo);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({
+            success: false,
+            error: `Erro na requisição: ${error}`
+        });
     }
 };
 
-exports.update = async (req, res) => {
+const ModuloUpdate = async (req, res) => {
     try {
-        const atualizado = await ModuloModel.update(req.params.id, req.body);
-        res.json(atualizado);
+        const id = req.params.id;
+        const moduloExistente = await ModuloModel.findOne({ where: { id } });
+
+        if (!moduloExistente) {
+            return res.send({ success: false, message: 'Módulo não encontrado' });
+        }
+
+        await ModuloModel.update(req.body, { where: { id } });
+
+        res.send({
+            success: true,
+            message: 'Módulo atualizado com sucesso!'
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({ success: false, error: `Erro na requisição: ${error}` });
     }
 };
 
-exports.remove = async (req, res) => {
+const ModuloDelete = async (req, res) => {
     try {
-        const result = await ModuloModel.remove(req.params.id);
-        res.json(result);
+        const id = req.params.id;
+        const deleted = await ModuloModel.destroy({ where: { id } });
+
+        if (!deleted) {
+            return res.send({ success: false, message: 'Módulo não encontrado' });
+        }
+
+        res.send({ success: true, message: 'Módulo deletado com sucesso!' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({ success: false, error: `Erro na requisição: ${error}` });
     }
 };
+
+module.exports = { ModuloCreate, ModuloList, ModuloListId, ModuloUpdate, ModuloDelete };
