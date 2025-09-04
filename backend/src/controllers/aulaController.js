@@ -1,47 +1,110 @@
-const AulaModel = require("../models/aulaModel");
+const AulaModel = require('../models/aulaModel');
 
-exports.getAll = async (req, res) => {
+const AulasCreate = async (req, res) => {
     try {
-        const aulas = await AulaModel.getAll();
-        res.json(aulas);
+        const { titulo, descricao, video_url, modulo_id, ordem, duracao } = req.body;
+
+        const aula = await AulaModel.create({
+            titulo, descricao, video_url, modulo_id, ordem, duracao
+        });
+
+        res.send({
+            success: true,
+            message: `Aula criada com sucesso! ID: ${aula.id}`
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({
+            success: false,
+            error: `Erro na requisição: ${error}`
+        });
     }
 };
 
-exports.getById = async (req, res) => {
+const AulasList = async (req, res) => {
     try {
-        const aula = await AulaModel.getById(req.params.id);
-        if (!aula) return res.status(404).json({ error: "Aula não encontrada" });
-        res.json(aula);
+        const aulas = await AulaModel.findAll();
+        res.send(aulas);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({
+            success: false,
+            error: `Erro na requisição: ${error}`
+        });
     }
 };
 
-exports.create = async (req, res) => {
+const AulasListId = async (req, res) => {
     try {
-        const nova = await AulaModel.create(req.body);
-        res.status(201).json(nova);
+        const id = req.params.id;
+        const aula = await AulaModel.findOne({ where: { id } });
+        if (!aula) {
+            return res.status(404).json({
+                success: false,
+                message: 'Aula não encontrada!'
+            });
+        }
+        res.send(aula);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(400).json({
+            success: false,
+            message: `Falha na requisição: ${error}`
+        });
     }
 };
 
-exports.update = async (req, res) => {
+const AulasUpdate = async (req, res) => {
     try {
-        const atualizada = await AulaModel.update(req.params.id, req.body);
-        res.json(atualizada);
+        const id = req.params.id;
+        const aulaExist = await AulaModel.findOne({ where: { id } });
+
+        if (!aulaExist) {
+            return res.send({
+                success: false,
+                message: 'Aula não encontrada!'
+            });
+        }
+
+        await AulaModel.update(req.body, { where: { id } });
+
+        res.send({
+            success: true,
+            message: `Aula alterada com sucesso!`
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({
+            success: false,
+            error: `Erro na requisição: ${error}`
+        });
     }
 };
 
-exports.remove = async (req, res) => {
+const AulasDelete = async (req, res) => {
     try {
-        const result = await AulaModel.remove(req.params.id);
-        res.json(result);
+        const id = req.params.id;
+        const deletado = await AulaModel.destroy({ where: { id } });
+
+        if (!deletado) {
+            return res.send({
+                success: false,
+                message: 'Aula não encontrada!'
+            });
+        }
+
+        res.send({
+            success: true,
+            message: `Aula deletada com sucesso!`
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({
+            success: false,
+            error: `Erro na requisição: ${error}`
+        });
     }
+};
+
+module.exports = {
+    AulasCreate,
+    AulasList,
+    AulasListId,
+    AulasUpdate,
+    AulasDelete
 };
