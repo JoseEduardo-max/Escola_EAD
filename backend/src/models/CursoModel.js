@@ -28,6 +28,7 @@ const CursoModel = connection.define("cursos", {
     type: DataTypes.STRING(50),
     allowNull: true
   },
+  
 }, {
   tableName: "cursos",
   timestamps: true,          // Sequelize vai criar/usar createdAt e updatedAt

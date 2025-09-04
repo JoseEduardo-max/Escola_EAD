@@ -23,7 +23,7 @@ const AulaModel = connection.define('aulas', {
         allowNull: false
     },
     duracao: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(300),
         allowNull: true
     },
     criado_em: { 

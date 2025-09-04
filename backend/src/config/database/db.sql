@@ -28,6 +28,8 @@ CREATE TABLE modulos (
     curso_id INT NOT NULL,
     titulo VARCHAR(100),
     ordem INT,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE
 );
 
@@ -39,6 +41,8 @@ CREATE TABLE aulas (
     video_url VARCHAR(255),
     ordem INT,
     duracao VARCHAR(30),
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (modulo_id) REFERENCES modulos(id) ON DELETE CASCADE
 );
 
