@@ -1,47 +1,82 @@
-const CertificadoModel = require("../models/certificadoModel");
+const CertificadoModel = require('../models/certificadoModel');
 
-exports.getAll = async (req, res) => {
+// CREATE
+const CertificadoCreate = async (req, res) => {
     try {
-        const certificados = await CertificadoModel.getAll();
-        res.json(certificados);
+        const { aluno_id, curso_id, codigo } = req.body;
+
+        const certificado = await CertificadoModel.create({ aluno_id, curso_id, codigo });
+
+        res.send({
+            success: true,
+            message: `Certificado criado com sucesso! ID: ${certificado.id}`
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({
+            success: false,
+            error: `Erro na requisição: ${error}`
+        });
     }
 };
 
-exports.getById = async (req, res) => {
+// READ - listar todos
+const CertificadoList = async (req, res) => {
     try {
-        const certificado = await CertificadoModel.getById(req.params.id);
-        if (!certificado) return res.status(404).json({ error: "Certificado não encontrado" });
-        res.json(certificado);
+        const certificados = await CertificadoModel.findAll();
+        res.send(certificados);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({ success: false, error: `Erro na requisição: ${error}` });
     }
 };
 
-exports.create = async (req, res) => {
+// READ - por ID
+const CertificadoListId = async (req, res) => {
     try {
-        const novo = await CertificadoModel.create(req.body);
-        res.status(201).json(novo);
+        const id = req.params.id;
+        const certificado = await CertificadoModel.findOne({ where: { id } });
+
+        if (!certificado) {
+            return res.status(404).json({ success: false, message: 'Certificado não encontrado' });
+        }
+
+        res.send(certificado);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({ success: false, error: `Erro na requisição: ${error}` });
     }
 };
 
-exports.update = async (req, res) => {
+// UPDATE
+const CertificadoUpdate = async (req, res) => {
     try {
-        const atualizado = await CertificadoModel.update(req.params.id, req.body);
-        res.json(atualizado);
+        const id = req.params.id;
+        const certificadoExistente = await CertificadoModel.findOne({ where: { id } });
+
+        if (!certificadoExistente) {
+            return res.send({ success: false, message: 'Certificado não encontrado' });
+        }
+
+        await CertificadoModel.update(req.body, { where: { id } });
+
+        res.send({ success: true, message: 'Certificado atualizado com sucesso!' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({ success: false, error: `Erro na requisição: ${error}` });
     }
 };
 
-exports.remove = async (req, res) => {
+// DELETE
+const CertificadoDelete = async (req, res) => {
     try {
-        const result = await CertificadoModel.remove(req.params.id);
-        res.json(result);
+        const id = req.params.id;
+        const deleted = await CertificadoModel.destroy({ where: { id } });
+
+        if (!deleted) {
+            return res.send({ success: false, message: 'Certificado não encontrado' });
+        }
+
+        res.send({ success: true, message: 'Certificado deletado com sucesso!' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.send({ success: false, error: `Erro na requisição: ${error}` });
     }
 };
+
+module.exports = { CertificadoCreate, CertificadoList, CertificadoListId, CertificadoUpdate, CertificadoDelete };
