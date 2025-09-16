@@ -18,6 +18,9 @@ app.use('/certificados', Certificados);
 const Cursos = require('./routes/cursoRoutes');
 app.use('/Cursos', Cursos)
 
+const Matriculas = require('./routes/matriculasRoute');
+app.use('/matriculas', Matriculas)
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
