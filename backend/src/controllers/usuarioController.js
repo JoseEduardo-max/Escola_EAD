@@ -1,135 +1,114 @@
-const userModel = require ('../models/usuarioModel')
+// controllers/usuarioController.js
+import userModel from '../models/usuarioModel.js';
 
-
-
-const UsersCreate = async(req,res,next)=>{
-    try{
-        const nome = req.body.nome
-        const email = req.body.email
-        const senha = req.body.senha
-        const categoria = req.body.categoria 
-       
-
-        
-        // const bcrypt = require ('bcrypt')
-        // const saltRound = 10
-        // const hash = await bcrypt.hash(password, saltRound)
-
-        const user = await userModel.create ({
-            nome: nome,
-            email: email,
-            senha: senha,
-            categoria: categoria
-        });
-
-        res.send({
-            'sucess':true,
-            'message':`Usuário criado com sucesso! ID: ${user.id - user.name}`
-        })
-    } catch (error){
-        res.send({
-            'sucess':false,
-            'error':`erro na requisição ${error}`
-        })
-    }
-  }
-
-  const UsersList = async(req, res, next)=>{
-    try{
-        const users = await userModel.findAll()
-        res.send(users)
-    } catch (error) {
-        res.send ({
-            'sucess':false,
-            'error':`erro na requisição ${error}`
-        })
-    }
-}
-
-const UsersListId = async (req,res,next) => {
+// Criar usuário
+const UsersCreate = async (req, res) => {
   try {
-      const id = req.params.id
-      const userId = await userModel.findOne(
-          { where: { id } });
-      if (!userId) {
-          return res.status(404).json({
-              sucess: false,
-              message:`Usuário não encontrado!!`
-          })
-      } 
+    const { nome, email, senha, categoria } = req.body;
 
-      res.send(userId)
-    
+    const user = await userModel.create({
+      nome,
+      email,
+      senha,
+      categoria,
+    });
 
-      } catch (error) {
-          return res.status(400).json({
-              success: false,
-              message: `Falha na requisição ${error}`
-          })
-
-      }
-
-}
-
-  const UserUpdate= async(req,res,next)=>{
-    try{
-      const id=req.params.id
-      const idValid= await userModel.findOne({where:{id:id}})
-  
-  
-  
-      if(idValid){
-       
-        const user=await userModel.update(req.body,{
-          where:{id}
-        })
-        res.send({
-        'sucess':true,
-        'message': `Usuario alterado com sucesso" id: ${user.id - user.FirstName}`
-        })
-      }else{
-        res.send({
-          'sucess':true,
-          'message': "usuario nao encontrado"
-        })
-      }
-  
-  
-    }catch(error){
-      res.send({
-        'sucess':false,
-        'error': `erro na requisição ${error}`
-      })
-    }
+    res.send({
+      success: true,
+      message: `Usuário criado com sucesso! ID: ${user.id}`,
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      error: `Erro na requisição: ${error}`,
+    });
   }
+};
 
+// Listar todos os usuários
+const UsersList = async (req, res) => {
+  try {
+    const users = await userModel.findAll();
+    res.send(users);
+  } catch (error) {
+    res.send({
+      success: false,
+      error: `Erro na requisição: ${error}`,
+    });
+  }
+};
 
-const UserDelete = async (req,res,next) => {
-   
-    try {
-        const id = req.params.id
-        const user = await userModel.destroy( {
-            where: { id }
-        });
-       
-        res.status(200).send({
-            'sucess': true,
-            'message': `Usuário deletado com sucesso! ID: ${user.id - user.name}`
-        })
+// Listar usuário por ID
+const UsersListId = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const userId = await userModel.findOne({ where: { id } });
 
-        
-    } catch (error) {
-        res.send({
-            'sucess': false,
-            'message': `Falha na listagem de usuários${error}`
-        })
+    if (!userId) {
+      return res.status(404).json({
+        success: false,
+        message: `Usuário não encontrado!`,
+      });
     }
-}
 
-  
+    res.send(userId);
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: `Falha na requisição: ${error}`,
+    });
+  }
+};
 
+// Atualizar usuário
+const UserUpdate = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const idValid = await userModel.findOne({ where: { id } });
 
+    if (idValid) {
+      await userModel.update(req.body, { where: { id } });
+      res.send({
+        success: true,
+        message: `Usuário alterado com sucesso! ID: ${id}`,
+      });
+    } else {
+      res.send({
+        success: false,
+        message: 'Usuário não encontrado',
+      });
+    }
+  } catch (error) {
+    res.send({
+      success: false,
+      error: `Erro na requisição: ${error}`,
+    });
+  }
+};
 
+// Deletar usuário
+const UserDelete = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await userModel.destroy({ where: { id } });
 
+    res.status(200).send({
+      success: true,
+      message: `Usuário deletado com sucesso! ID: ${id}`,
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: `Falha na requisição: ${error}`,
+    });
+  }
+};
 
-module.exports={ UsersCreate, UserDelete, UserUpdate, UsersList, UsersListId};
+// Exportar como default
+export default {
+  UsersCreate,
+  UsersList,
+  UsersListId,
+  UserUpdate,
+  UserDelete,
+};

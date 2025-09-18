@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const MatriculaController = require('../controllers/matriculasController');
+
+import MatriculaController from '../controllers/matriculasController.js';
 
 router.post('/', MatriculaController.MatriculaCreate);
 router.get('/', MatriculaController.MatriculaList);
@@ -8,5 +9,4 @@ router.get('/:id', MatriculaController.MatriculaListId);
 router.put('/:id', MatriculaController.MatriculaUpdate);
 router.delete('/:id', MatriculaController.MatriculaDelete);
 
-
-module.exports = router;
+export default router;

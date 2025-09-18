@@ -1,5 +1,5 @@
-const connection = require("../config/database/connection");
-const { DataTypes } = require("sequelize");
+import connection from '../config/database/connection.js';
+import { DataTypes } from 'sequelize';
 
 const MatriculaModel = connection.define(
   "matriculas",
@@ -41,5 +41,4 @@ const MatriculaModel = connection.define(
   }
 );
 
-module.exports = MatriculaModel;
-
+export default MatriculaModel;

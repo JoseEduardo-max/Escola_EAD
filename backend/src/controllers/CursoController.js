@@ -1,135 +1,115 @@
-const CursoModel = require('../models/CursoModel')
+// controllers/CursoController.js
+import CursoModel from '../models/CursoModel.js';
 
-const CursoList = async (req,res, next) => {
+const CursoList = async (req, res, next) => {
+  try {
+    const cursos = await CursoModel.findAll();
+    res.send(cursos);
+  } catch (error) {
+    res.send({
+      success: false,
+      error: `Erro na requisição ${error}`
+    });
+  }
+};
 
-    try {
-        const Cursos = await CursoModel.findAll()
-        res.send(Cursos)
-    } catch (error) {
-        res.send ({
-            'sucess': false,
-            'error':`Erro na requisição ${error}`
-        })
+const CursoListId = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const curso = await CursoModel.findOne({ where: { id } });
+    if (!curso) {
+      return res.status(404).json({
+        success: false,
+        message: `Curso não encontrado!`
+      });
     }
-}
+    res.send(curso);
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: `Falha ao listar o curso! ${error}`
+    });
+  }
+};
 
-const CursoListId = async (req,res,next) => {
-    try {
-        const id = req.params.id
-        const CursoId = await CursoModel.findOne(
-            { where: { id } });
-        if (!CursoId) {
-            return res.status(404).json({
-                sucess: false,
-                message:`Curso não encontrada!!`
-            })
-        } 
+const CursoCreate = async (req, res, next) => {
+  try {
+    const { titulo, descricao, publico_alvo, img_capa, categoria } = req.body;
 
-        res.send(CursoId)
-      
+    const curso = await CursoModel.create({
+      titulo,
+      descricao,
+      publico_alvo,
+      img_capa,
+      categoria
+    });
 
-        } catch (error) {
-            return res.status(400).json({
-                success: false,
-                message: `Falha ao listar a Curso! ${error}`
-            })
+    res.status(201).send({
+      success: true,
+      message: `Curso criado com sucesso! ID: ${curso.id}`
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      error: `Erro na requisição ${error}`
+    });
+  }
+};
 
-        }
+const CursoUpdate = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const cursoExistente = await CursoModel.findOne({ where: { id } });
 
-} 
-
-
-
-const CursoCreate = async (req,res,next) => {
-    try {
-        const titulo = req.body.titulo
-        const descricao = req.body.descricao
-        const publico_alvo = req.body.publico_alvo
-        const img_capa = req.body.img_capa
-        const categoria = req.body.categoria
-        
-
-        const curso = await CursoModel.create({
-            titulo:titulo,
-            descricao:descricao,
-            publico_alvo:publico_alvo,
-            img_capa:img_capa,
-            categoria:categoria
-
-        })
-
-        res.status(201).send({
-            'sucess':true,
-            'message':`Curso criada com sucesso! ${curso.id - curso.titulo}`
-        })
-
-    } catch (error) {
-        res.status(400).send({
-            'sucess': false,
-            'error': `erro na requisição ${error}`
-        })
-    }
-}
-
-
-
-const CursoUpdate = async (req,res,next) => {
-    try {
-        const id = req.params.id
-        const curso = await CursoModel.update(req.body, {
-            where: { id }
-        });
-
-        if (curso == true) {
-            res.status(204).send({
-                'sucess':true,
-                'message':`Curso modificado com sucesso!`
-            })
-        } else {
-            res.status(400).send({
-                'sucess':true,
-                'message':`Curso não encontrado!`
-            })
-        }
-
-
-    } catch (error) {
-        res.status(404).send({
-            'sucess': false,
-            'message': `Falha na alteração do curso! ${error}`
-        })
-    }
-}
-
-
-const CursoDelete = async (req,res,next) => {
-    try {
-        const id = req.params.id
-        const curso = await CursoModel.destroy({
-            where: {id}
-        })
-
-    if (curso == true) {
-        res.status(204).send({
-            'sucess':true,
-            'message':`Curso deletado com sucesso!`
-        })
-    } else {
-        res.status(400).send({
-            'sucess':true,
-            'message':`Curso não encontrado!`
-        })
+    if (!cursoExistente) {
+      return res.status(404).send({
+        success: false,
+        message: `Curso não encontrado!`
+      });
     }
 
-        
-    } catch (error) {
-        res.status(404).send({
-            'sucess':false,
-            'message':`Erro ao deletar Curso! ${error}`
-        })
+    await CursoModel.update(req.body, { where: { id } });
+
+    res.status(200).send({
+      success: true,
+      message: `Curso modificado com sucesso!`
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      message: `Falha na alteração do curso! ${error}`
+    });
+  }
+};
+
+const CursoDelete = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const deletado = await CursoModel.destroy({ where: { id } });
+
+    if (!deletado) {
+      return res.status(404).send({
+        success: false,
+        message: `Curso não encontrado!`
+      });
     }
-}
 
+    res.status(200).send({
+      success: true,
+      message: `Curso deletado com sucesso!`
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      message: `Erro ao deletar o curso! ${error}`
+    });
+  }
+};
 
-module.exports = {
-    CursoList,CursoListId , CursoCreate, CursoUpdate, CursoDelete}
+export default {
+  CursoList,
+  CursoListId,
+  CursoCreate,
+  CursoUpdate,
+  CursoDelete
+};
