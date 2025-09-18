@@ -1,42 +1,36 @@
-const connection = require ('../config/database/connection')
-const { DataTypes } = require('sequelize')
+import { DataTypes } from 'sequelize';
+import connection from '../config/database/connection.js';
 
-//commit
-
-let UserModel = connection.define('usuarios', {
-    nome: {
-        type: DataTypes.STRING(50),
-        allowNull: false
-    }, 
-    email: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
-        unique: true
-    },
-    User_id: {
-  type: DataTypes.INTEGER,
-  autoIncrement: true,
-  primaryKey: true
-}
-,
-    senha: {
-        type: DataTypes.STRING(300),
-        allowNull: false
-    },
-    criado_em: { 
-        type: DataTypes.DATE, 
-        allowNull: false, 
-        defaultValue: DataTypes.NOW 
-    },
-    categoria: { 
-        type: DataTypes.STRING(50), 
-        allowNull: false, 
-        defaultValue: "aluno" // valor padrão
-    }
+const Usuario = connection.define('Usuario', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  nome: {
+    type: DataTypes.STRING(100),
+    allowNull: false
+  },
+  email: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+    unique: true
+  },
+  senha: {
+    type: DataTypes.STRING(255),
+    allowNull: false
+  },
+  categoria: {
+    type: DataTypes.STRING(40),
+    allowNull: false
+  },
+  criado_em: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW
+  }
 }, {
-    tableName: "usuarios",
-    timestamps: false // <--- impede Sequelize de tentar usar createdAt/updatedAt
- 
+  tableName: 'usuarios', // garante o nome certo da tabela
+  timestamps: false      // já que você não usa createdAt/updatedAt padrão
 });
 
-module.exports = UserModel;
+export default Usuario;
