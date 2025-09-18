@@ -1,16 +1,13 @@
-// server.js
 import express from 'express';
 import dotenv from 'dotenv';
 import connection from './config/database/connection.js';
 
-// AdminJS
 import AdminJS from 'adminjs';
 import AdminJSExpress from '@adminjs/express';
 import AdminJSSequelize from '@adminjs/sequelize';
 
 dotenv.config();
 
-// Registrar adapter do Sequelize
 AdminJS.registerAdapter(AdminJSSequelize);
 
 const app = express();
@@ -36,7 +33,6 @@ app.use('/matriculas', Matriculas);
 // ===========================
 // IMPORTAR TODOS OS MODELS
 // ===========================
-// Isso garante que o AdminJS reconheça as tabelas
 import './models/usuarioModel.js';
 import './models/cursoModel.js';
 import './models/moduloModel.js';
@@ -48,7 +44,7 @@ import './models/certificadoModel.js';
 // CONFIGURAR ADMINJS
 // ===========================
 const adminJs = new AdminJS({
-  databases: [connection], // Sequelize já tem todos os models registrados
+  databases: [connection], 
   rootPath: '/admin',
 });
 
