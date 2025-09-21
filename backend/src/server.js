@@ -37,7 +37,7 @@ import './models/usuarioModel.js';
 import './models/cursoModel.js';
 import './models/moduloModel.js';
 import './models/aulaModel.js';
-import './models/matriculaModel.js';
+import './models/MatriculaModel.js';
 import './models/certificadoModel.js';
 
 // ===========================
