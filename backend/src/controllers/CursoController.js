@@ -1,5 +1,5 @@
 // controllers/CursoController.js
-import CursoModel from '../models/CursoModel.js';
+import CursoModel from '../models/cursoModel.js';
 
 const CursoList = async (req, res, next) => {
   try {
