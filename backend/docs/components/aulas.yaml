@@ -1,0 +1,35 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 1
+
+  modulo_id:
+    type: integer
+    example: 3
+
+  titulo:
+    type: string
+    example: "Introdução ao JavaScript"
+
+  descricao:
+    type: string
+    example: "Nesta aula, abordamos a história, fundamentos e sintaxe básica do JavaScript."
+
+  video_url:
+    type: string
+    format: uri
+    example: "https://meuservidor.com/videos/aula1.mp4"
+
+  ordem:
+    type: integer
+    example: 1
+
+  duracao_min:
+    type: integer
+    example: 45
+
+  criado_em:
+    type: string
+    format: date-time
+    example: "2025-07-31T19:00:00Z"

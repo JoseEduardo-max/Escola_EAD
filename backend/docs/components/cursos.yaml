@@ -1,0 +1,31 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 1
+
+  titulo:
+    type: string
+    example: "Lógica de Programação em JavaScript"
+
+  descricao:
+    type: string
+    example: "Curso introdutório de lógica de programação com foco em JavaScript moderno e práticas de raciocínio computacional."
+
+  imagem_capa:
+    type: string
+    format: uri
+    example: "https://meuservidor.com/imagens/cursos/js-intro.png"
+
+  publico_alvo:
+    type: string
+    example: "Iniciantes em programação"
+
+  categoria:
+    type: string
+    example: "Desenvolvimento Web"
+
+  criado_em:
+    type: string
+    format: date-time
+    example: "2025-07-31T19:00:00Z"

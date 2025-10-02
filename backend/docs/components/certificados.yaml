@@ -1,0 +1,27 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 1
+
+  aluno_id:
+    type: integer
+    example: 42
+
+  curso_id:
+    type: integer
+    example: 10
+
+  emitido_em:
+    type: string
+    format: date-time
+    example: "2025-09-01T18:00:00Z"
+
+  codigo_certificado:
+    type: string
+    example: "CERT-2025-9D2F-8A91"
+
+  valido_ate:
+    type: string
+    format: date-time
+    example: "2027-09-01T18:00:00Z"

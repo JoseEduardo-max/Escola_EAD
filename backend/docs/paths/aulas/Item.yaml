@@ -1,0 +1,7 @@
+ get:
+      tags: [Aulas]
+      description: buscar um modulo
+ patch:
+      tags: [Aulas]
+ delete:
+      tags: [Aulas]
