@@ -1,0 +1,7 @@
+ get:
+      tags: [modulos]
+      description: buscar um modulo
+ patch:
+      tags: [modulos]
+ delete:
+      tags: [modulos]

@@ -1,0 +1,7 @@
+ get:
+      tags: [certificados]
+      description: buscar um modulo
+ patch:
+      tags: [certificados]
+ delete:
+      tags: [certificados]

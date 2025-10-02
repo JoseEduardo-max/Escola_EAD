@@ -1,0 +1,42 @@
+openapi: 3.1.1
+info:
+  title: API de exemplo da aplicação escola_ead
+  description: Uma api de testes
+  version: 0.0.1
+
+tags:
+  - Usuarios
+  - aulas
+  - certificados
+  - modulos
+  - matricula
+  - curso
+
+paths:
+  /api/usuarios:
+   $ref: './paths/Usuario/Collection.yaml'
+  /api/usuarios/{id}:
+   $ref: './paths/Usuario/Item.yaml'
+   
+
+  /api/postagens:
+    $ref: './paths/Post/Collection.yaml'
+
+  /api/postagens/{id}:
+    $ref: './paths/Post/Item.yaml'
+
+
+components:
+  schemas:
+    Usuario:
+      $ref: './components/Usuario.yaml'
+    matricula:
+      $ref: './components/matricula.yaml'
+    aulas:
+      $ref: './components/aulas.yaml'
+    modulos:
+      $ref: './components/modulo.yaml'
+    certificados:
+      $ref: './components/certificados.yaml'
+    cursos:
+      $ref: './components/cursos.yaml'

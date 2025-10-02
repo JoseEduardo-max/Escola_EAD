@@ -1,0 +1,34 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 1
+
+  nome:
+    type: string
+    example: Chico César
+
+
+
+
+  email:
+    type: string
+    format: email
+    example: chico@cesar.com
+
+    tipo:
+    type: string
+
+    example: aluno ou professor
+
+  senha:
+    type: string
+    format: password
+    example: "SenhaF0rte123!"
+
+  criado_em:
+    type: string
+    format: date-time
+    example: "2025-07-31T19:00:00Z"
+
+

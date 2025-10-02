@@ -1,0 +1,64 @@
+get:
+  tags: [Modulos]
+  summary: Listar todos os módulos
+  description: Retorna um array contendo todos os módulos cadastrados no sistema.
+  responses:
+    200:
+      description: Lista de módulos encontrados com sucesso.
+      content:
+        "application/json":
+          schema:
+            type: array
+            items:
+              allOf:
+                - $ref: "../../components/modulo.yaml"
+    404:
+      description: Nenhum módulo encontrado.
+    500:
+      description: Erro interno no servidor.
+
+post:
+  tags: [Modulos]
+  summary: Cadastrar um novo módulo
+  description: Cria um novo módulo vinculado a um curso existente.
+  requestBody:
+    required: true
+    content:
+      "application/json":
+        schema:
+          $ref: "../../components/modulo.yaml"
+        example:
+          curso_id: 3
+          titulo: "Fundamentos da Programação"
+          ordem: 1
+  responses:
+    201:
+      description: Módulo criado com sucesso.
+      content:
+        "application/json":
+          schema:
+            $ref: "../../components/modulo.yaml"
+    400:
+      description: Dados inválidos fornecidos para criação do módulo.
+    404:
+      description: Curso associado não encontrado.
+    500:
+      description: Erro interno ao criar módulo.
+
+put:
+  tags: [Modulos]
+  summary: Atualizar um módulo existente
+  description: Atualiza as informações de um módulo com base em seu ID.
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID do módulo a ser atualizado.
+      schema:
+        type: integer
+        example: 1
+  requestBody:
+    required: true
+    content:
+      "application/json":
+        schema:

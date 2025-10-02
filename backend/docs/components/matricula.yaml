@@ -1,0 +1,28 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 1
+
+  aluno_id:
+    type: integer
+    example: 12
+
+  curso_id:
+    type: integer
+    example: 5
+
+  data_matricula:
+    type: string
+    format: date-time
+    example: "2025-08-15T14:30:00Z"
+
+  status:
+    type: string
+    example: "ativo"
+    description: "Define o estado da matrícula (ativo, cancelado, concluído, trancado)."
+
+  criado_em:
+    type: string
+    format: date-time
+    example: "2025-08-15T14:30:00Z"

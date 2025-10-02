@@ -1,0 +1,23 @@
+get:
+  tags: [Usuario]
+  summary: Todos os usuarios
+  description: Buscar todos os usuarios
+  responses:
+    200:
+      description: array de usuarios
+      content: 
+        "application/json":
+          schema:
+            type: array
+            items:
+              allOf:
+                - $ref: '../../components/Usuario.yaml'
+post:
+  tags: [Usuario]
+  summary: cadastra um usuario
+  requestBody:
+    content:
+      "application/json":
+        schema:
+          $ref: '../../components/Usuario.yaml'
+          
