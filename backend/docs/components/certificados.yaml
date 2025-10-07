@@ -1,4 +1,11 @@
 type: object
+required:
+  - id
+  - aluno_id
+  - curso_id
+  - emitido_em
+  - codigo_certificado
+  - valido_ate
 properties:
   id:
     type: integer

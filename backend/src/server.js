@@ -52,6 +52,31 @@ const adminRouter = AdminJSExpress.buildRouter(adminJs);
 app.use(adminJs.options.rootPath, adminRouter);
 
 // ===========================
+// CONFIGURAR SWAGGER
+// ===========================
+import swaggerUi from 'swagger-ui-express';
+import fs from 'fs';
+import yaml from 'yaml';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Caminho absoluto para o arquivo openapi.yaml
+const openapiPath = path.join(__dirname, '../docs/openapi.yaml');
+
+// Lê e converte o YAML em objeto JS
+const file = fs.readFileSync(openapiPath, 'utf8');
+const swaggerDocument = yaml.parse(file);
+
+// Rota da documentação
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+console.log(`📄 Swagger disponível em http://localhost:${process.env.PORT || 3000}/api-docs`);
+
+
+// ===========================
 // SUBIR SERVIDOR
 // ===========================
 const PORT = process.env.PORT || 3000;

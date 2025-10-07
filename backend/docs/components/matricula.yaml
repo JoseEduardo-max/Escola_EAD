@@ -1,4 +1,11 @@
 type: object
+required:
+  - id
+  - aluno_id
+  - curso_id
+  - data_matricula
+  - status
+  - criado_em
 properties:
   id:
     type: integer

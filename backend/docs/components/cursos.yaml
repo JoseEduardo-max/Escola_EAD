@@ -1,4 +1,12 @@
 type: object
+required:
+  - id
+  - titulo
+  - descricao
+  - imagem_capa
+  - publico_alvo
+  - categoria
+  - criado_em
 properties:
   id:
     type: integer
