@@ -1,4 +1,12 @@
 type: object
+required:
+  - id
+  - modulo_id
+  - titulo
+  - descricao
+  - ordem
+  - duracao_min
+  - criado_em
 properties:
   id:
     type: integer

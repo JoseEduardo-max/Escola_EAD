@@ -1,4 +1,11 @@
 type: object
+required:
+  - id
+  - nome
+  - email
+  - tipo
+  - senha
+  - criado_em
 properties:
   id:
     type: integer
@@ -6,20 +13,16 @@ properties:
 
   nome:
     type: string
-    example: Chico César
-
-
-
+    example: "Chico César"
 
   email:
     type: string
     format: email
-    example: chico@cesar.com
+    example: "chico@cesar.com"
 
-    tipo:
+  tipo:
     type: string
-
-    example: aluno ou professor
+    example: "aluno ou professor"
 
   senha:
     type: string
@@ -30,5 +33,3 @@ properties:
     type: string
     format: date-time
     example: "2025-07-31T19:00:00Z"
-
-
