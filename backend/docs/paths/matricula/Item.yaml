@@ -1,7 +1,7 @@
  get:
-      tags: [matricula]
+      tags: [Matricula]
       description: buscar um modulo
  patch:
-      tags: [matricula]
+      tags: [Matricula]
  delete:
-      tags: [matricula]
+      tags: [Matricula]

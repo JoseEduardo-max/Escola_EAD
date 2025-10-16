@@ -1,7 +1,7 @@
  get:
-      tags: [Usuario]
+      tags: [Usuarios]
       description: buscar um usuario
  patch:
-      tags: [Usuario]
+      tags: [Usuarios]
  delete:
-      tags: [Usuario]
+      tags: [Usuarios]

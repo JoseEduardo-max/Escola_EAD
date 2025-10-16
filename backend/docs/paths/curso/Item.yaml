@@ -1,7 +1,7 @@
  get:
-      tags: [curso]
+      tags: [Cursos]
       description: buscar um modulo
  patch:
-      tags: [curso]
+      tags: [Cursos]
  delete:
-      tags: [curso]
+      tags: [Cursos]

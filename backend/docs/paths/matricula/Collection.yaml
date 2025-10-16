@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Matricula
+  summary: Lista todas as matrículas
+  description: Retorna todas as matrículas cadastradas no sistema.
+  responses:
+    '200':
+      description: Lista de matrículas retornada com sucesso.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../components/Matricula.yaml'
+    '500':
+      description: Erro interno no servidor.
+
+post:
+  tags:
+    - Matricula
+  summary: Cria uma nova matrícula
+  description: Cadastra uma nova matrícula no sistema.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/Matricula.yaml'
+  responses:
+    '201':
+      description: Matrícula criada com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/Matricula.yaml'
+    '400':
+      description: Dados inválidos fornecidos.
+    '500':
+      description: Erro interno no servidor.
