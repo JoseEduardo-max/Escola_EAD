@@ -1,5 +1,5 @@
 get:
-  tags: [Usuario]
+  tags: [Usuarios]
   summary: Todos os usuarios
   description: Buscar todos os usuarios
   responses:
@@ -13,7 +13,7 @@ get:
               allOf:
                 - $ref: '../../components/Usuario.yaml'
 post:
-  tags: [Usuario]
+  tags: [Usuarios]
   summary: cadastra um usuario
   requestBody:
     content:

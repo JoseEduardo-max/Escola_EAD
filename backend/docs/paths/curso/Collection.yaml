@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Cursos
+  summary: Lista todos os cursos
+  description: Retorna uma lista com todos os cursos disponíveis na plataforma.
+  responses:
+    '200':
+      description: Lista de cursos retornada com sucesso.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../components/curso.yaml'
+    '500':
+      description: Erro interno no servidor.
+
+post:
+  tags:
+    - Cursos
+  summary: Cria um novo curso
+  description: Cadastra um novo curso na plataforma.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/curso.yaml'
+  responses:
+    '201':
+      description: Curso criado com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/curso.yaml'
+    '400':
+      description: Dados inválidos fornecidos.
+    '500':
+      description: Erro interno no servidor.

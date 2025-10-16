@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Aulas
+  summary: Lista todas as aulas
+  description: Retorna uma lista com todas as aulas cadastradas.
+  responses:
+    '200':
+      description: Lista de aulas retornada com sucesso.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../components/aulas.yaml'
+    '500':
+      description: Erro interno no servidor.
+
+post:
+  tags:
+    - Aulas
+  summary: Cria uma nova aula
+  description: Cadastra uma nova aula no sistema.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/aulas.yaml'
+  responses:
+    '201':
+      description: Aula criada com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/aulas.yaml'
+    '400':
+      description: Dados inválidos fornecidos.
+    '500':
+      description: Erro interno no servidor.

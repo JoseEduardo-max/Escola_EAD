@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Certificados
+  summary: Lista todos os certificados
+  description: Retorna uma lista com todos os certificados emitidos para os alunos.
+  responses:
+    '200':
+      description: Lista de certificados retornada com sucesso.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../components/certificados.yaml'
+    '500':
+      description: Erro interno no servidor.
+
+post:
+  tags:
+    - Certificados
+  summary: Cria um novo certificado
+  description: Emite um novo certificado para um aluno matriculado em um curso concluído.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/certificados.yaml'
+  responses:
+    '201':
+      description: Certificado criado com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/certificados.yaml'
+    '400':
+      description: Dados inválidos fornecidos.
+    '500':
+      description: Erro interno no servidor.

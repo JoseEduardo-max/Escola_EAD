@@ -5,18 +5,50 @@ info:
   version: 0.0.1
 
 tags:
-  - Usuarios
-  - Aulas
-  - Certificados
-  - Modulos
-  - Matricula
-  - Cursos
+  - name: Usuarios
+    description: Operações relacionadas a usuários
+  - name: Aulas
+    description: Operações relacionadas a aulas
+  - name: Certificados
+    description: Operações relacionadas a certificados
+  - name: Modulos
+    description: Operações relacionadas a módulos
+  - name: Matricula
+    description: Operações relacionadas a matrículas
+  - name: Cursos
+    description: Operações relacionadas a cursos
 
 paths:
   /api/usuarios:
     $ref: './paths/Usuario/Collection.yaml'
   /api/usuarios/{id}:
     $ref: './paths/Usuario/Item.yaml'
+
+  /api/aulas:
+    $ref: './paths/aulas/Collection.yaml'
+  /api/aulas/{id}:
+    $ref: './paths/aulas/Item.yaml'
+
+  /api/certificados:
+    $ref: './paths/certificados/Collection.yaml'
+  /api/certificados/{id}:
+    $ref: './paths/certificados/Item.yaml'
+
+  /api/modulos:
+    $ref: './paths/Modulos/Collection.yaml'
+  /api/modulos/{id}:
+    $ref: './paths/Modulos/Item.yaml'
+
+  /api/matriculas:
+    $ref: './paths/matricula/Collection.yaml'
+  /api/matriculas/{id}:
+    $ref: './paths/matricula/Item.yaml'
+
+  /api/cursos:
+    $ref: './paths/Curso/Collection.yaml'
+  /api/cursos/{id}:
+    $ref: './paths/Curso/Item.yaml'
+
   /api/postagens:
     $ref: './paths/Post/Collection.yaml'
   /api/postagens/{id}:
