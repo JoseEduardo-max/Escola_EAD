@@ -1,7 +1,19 @@
  get:
       tags: [Usuarios]
       description: buscar um usuario
+      responses:
+          200:
+              description: array de usuarios
+              content: 
+                "application/json":
+                    schema:
+                        type: array
+                        items:
+                         allOf:
+                         - $ref: '../../components/Usuario.yaml'
  patch:
       tags: [Usuarios]
+      description: atualizar um usuario
+      requestBody:
  delete:
       tags: [Usuarios]
