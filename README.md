@@ -70,13 +70,13 @@ A dificuldade de professores, escolas e pequenos empreendedores em criar uma pla
 |----------------------------------|------------|
 | Discovery do Projeto              | ✅ |
 | Gerenciamento das Tarefas         | ✅ |
-| Prototipação de telas (opcional)  | 🔲 |
-| Implementação Frontend (opcional) | 🔲 |
-| API em Node.js                    | 🔲 |
-| Documentação dos Endpoints        | 🔲 |
+| Prototipação de telas (opcional)  | ✅ |
+| Implementação Frontend (opcional) | ✅ |
+| API em Node.js                    | ✅ |
+| Documentação dos Endpoints        | ✅ |
 | Desenho do Banco de Dados         | ✅ |
 | Testes automatizados dos endpoints| 🔲 |
-| Testes unitários (50%)            | 🔲 |
+| Testes unitários (50%)            | ✅ |
 | Repositório público no GitHub     | ✅ |
 | Apresentação final                | 🔲 |
 
